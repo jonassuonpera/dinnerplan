@@ -1,0 +1,6 @@
+{
+    "domain": "dev-fg9av8b6.eu.auth0.com",
+    "clientId": "FHG5i9wjZVVBiXktuCzY2lEZv9JumXxj",
+    "redirect_uri": "http://localhost:3000",
+    "audience": "https://dinnerplan/"
+  }
