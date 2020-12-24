@@ -1,20 +1,17 @@
 import {
   BrowserRouter,
   Route,
-  Link,
   Switch,
-  RouteComponentProps
 } from "react-router-dom";
-import Login from './views/Login';
-import Signup from './views/Signup';
-import Dashboard from './views/Dashboard';
+import UserSettings from './views/UserSettings';
+import Plan from './views/Plan';
+import Dishes from './views/Dishes';
 import NotFound from './views/NotFound';
-import Header from './header';
+import Header from './Header';
 
 // for apollo client
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
-import { setContext } from "apollo-link-context";
 
 const App = () => {
 
@@ -30,15 +27,20 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <Header />
-      <BrowserRouter>
-        <Switch>
-            <Route exact path='/' component={Login} />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route path='/' component={NotFound} />
-        </Switch>
-      </BrowserRouter>     
+      
+      
+        <BrowserRouter>
+        <Header />
+        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <Switch>
+              <Route exact path='/' component={Plan} />
+              <Route exact path='/user-settings' component={UserSettings} />
+              <Route exact path='/dishes' component={Dishes} />
+              <Route path='/' component={NotFound} />
+          </Switch>
+          </div>  
+        </BrowserRouter>       
+        
     </ApolloProvider>
   );
 }

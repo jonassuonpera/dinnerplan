@@ -6,6 +6,7 @@
     "@apollo/react-hoc": "^4.0.0",
     "@apollo/react-hooks": "^4.0.0",
     "@auth0/auth0-spa-js": "^1.13.5",
+    "@babel/cli": "^7.12.10",
     "@craco/craco": "^6.0.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@testing-library/jest-dom": "^5.11.6",
@@ -15,10 +16,13 @@
     "apollo-boost": "^0.4.9",
     "apollo-link-context": "^1.0.20",
     "autoprefixer": "^9.8.6",
+    "babel-plugin-react-intl": "^8.2.22",
     "graphql": "^15.4.0",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-intl": "^5.10.9",
+    "react-intl-translations-manager": "^5.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
@@ -28,7 +32,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "translations:extract": "NODE_ENV=production babel src/**.js"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.10",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
