@@ -11,9 +11,11 @@ const onRedirectCallback = appState => {
   window.history.replaceState(
     {},
     document.title,
-    appState && appState.targetUrl ? appState.targetUrl : window.location.pathname
+    appState && appState.targetUrl
+      ? appState.targetUrl
+      : window.location.pathname
   );
-}
+};
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,7 +23,7 @@ ReactDOM.render(
       domain={config.domain}
       client_id={config.clientId}
       audience={config.audience}
-      redirect_uri={config.redirect_uri}
+      redirect_uri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
     <App />

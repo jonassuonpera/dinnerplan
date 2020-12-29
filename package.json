@@ -5,6 +5,7 @@
   "dependencies": {
     "@apollo/react-hoc": "^4.0.0",
     "@apollo/react-hooks": "^4.0.0",
+    "@auth0/auth0-react": "^1.2.0",
     "@auth0/auth0-spa-js": "^1.13.5",
     "@babel/cli": "^7.12.10",
     "@craco/craco": "^6.0.0",
