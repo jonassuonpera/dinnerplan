@@ -14,8 +14,8 @@ import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { setContext } from '@apollo/client/link/context';
 
 import UserSettings from './views/UserSettings';
-import Plans from './views/Plans';
-import Dishes from './views/Dishes';
+import PlanView from './views/PlanView';
+import DishView from './views/DishView';
 import NotFound from './views/NotFound';
 import Header from './Header';
 
@@ -84,7 +84,8 @@ const App = () => {
     <Header />
     <div className="px-6 mx-auto flex flex-wrap items-center justify-between">
       <Switch>
-          <Route exact path='/' component={Plans} />
+          <Route exact path='/' component={PlanView} />
+          <Route exact path='/dishes' component={DishView} />
           {/* <Route exact path='/user-settings' component={UserSettings} />
           <Route exact path='/dishes' component={Dishes} />
           <Route path='/' component={NotFound} /> */}

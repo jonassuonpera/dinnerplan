@@ -1,22 +1,17 @@
-import React, { Component } from 'react'
+import React, { ReactElement } from 'react'
+
+import { Dish } from '../../interfaces/planInterface';
 
 interface Props {
 
 }
-interface State {
 
-}
+function DishItem(dishItem: Dish): ReactElement {
+    return (
+        <div>
 
-class DishItem extends Component<Props, State> {
-    state = {}
-
-    render() {
-        return (
-            <div>
-
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default DishItem

@@ -25,7 +25,7 @@ query MyQuery {
   }
 `;
 
-export default function Plans() {
+export default function PlanView() {
 
   const [dateView, setDateView] = useState(new Date());
 

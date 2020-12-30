@@ -9,6 +9,8 @@ export interface IngredientObject {
 export interface Dish {
     name: String,
     recipe: String,
+    is_public: Boolean,
+    created_by: String,
     dish_ingredients: Array<IngredientObject>
 }
 
