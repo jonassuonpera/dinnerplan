@@ -11,6 +11,7 @@ interface IAppProps {
 const Header: React.FunctionComponent<IAppProps> = (props) => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  console.log({ user });
 
   return (
     <>
@@ -61,7 +62,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
                 dishes
               </NavLink>
               <NavLink className="nav-item my-auto ml-5" to="/user-settings">
-                <img width="50" height="50" src={UserIcon} alt="user-icon" />
+                <img width="50" height="50" src={user.picture} alt="user-icon" />
               </NavLink>
               <li className="nav-item my-auto ml-5">
                 {!isAuthenticated && (

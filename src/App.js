@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 
 // for authentication using auth0
@@ -18,6 +18,8 @@ import PlanView from './views/PlanView';
 import DishView from './views/DishView';
 import NotFound from './views/NotFound';
 import Header from './Header';
+import { UserContext } from './util/UserContext';
+ 
 
 
 const httpLink = new HttpLink({
@@ -29,7 +31,8 @@ const App = () => {
 
   const [accessToken, setAccessToken] = useState("");
   const [client, setClient] = useState();
-  const { getTokenSilently, loading } = useAuth0();
+  const { getTokenSilently, loading, user } = useAuth0();
+  //const [value, setValue] = useContext(UserContext)
 
   useEffect(() => {
     const getAccessToken = async () => {
@@ -80,19 +83,19 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      
-    <Header />
-    <div className="px-6 mx-auto flex flex-wrap items-center justify-between">
-      <Switch>
-          <Route exact path='/' component={PlanView} />
-          <Route exact path='/dishes' component={DishView} />
-          {/* <Route exact path='/user-settings' component={UserSettings} />
-          <Route exact path='/dishes' component={Dishes} />
-          <Route path='/' component={NotFound} /> */}
-      </Switch>
-      </div>  
-    
-</ApolloProvider>
+      <UserContext.Provider value={user}>
+        <Header />
+        <div className="px-6 mx-auto flex flex-wrap items-center justify-between">
+          <Switch>
+            <Route exact path='/' component={PlanView} />
+            <Route exact path='/dishes' component={DishView} />
+              {/* <Route exact path='/user-settings' component={UserSettings} />
+              <Route exact path='/dishes' component={Dishes} />
+              <Route path='/' component={NotFound} /> */}
+          </Switch>
+        </div>  
+      </UserContext.Provider>            
+    </ApolloProvider>
   );
 }
 
