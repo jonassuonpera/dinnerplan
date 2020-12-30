@@ -1,15 +1,5 @@
 import React from 'react'
-
-interface Ingredient {
-    name: String
-}
-
-interface Dish {
-    name: String,
-    recipe?: String,
-    dish_ingredients?: Array<Ingredient>
-}
-
+import { Dish, IngredientObject } from '../../interfaces/planInterface';
 interface Props {
     day: String,
     dish: Dish | undefined
@@ -25,30 +15,14 @@ export const PlanDay = (props: Props) => {
             <div>
                 <ul>
                     {
-                        props.dish?.dish_ingredients?.map((item: Ingredient, index) => {
-                            console.log("item: ", item.name);
-
+                        props.dish?.dish_ingredients?.map((item: IngredientObject, index) => {
                             return (
-                                <li key={index}>{item.name}</li>
+                                <li key={index}>{item.ingredient.name}</li>
                             )
                         })
                     }
                 </ul>
             </div>
-            {/* <div>{props.day}</div>
-            <div>
-                <div>{props.dishName}</div>
-                <ul>
-                    {
-                        props.ingredients.map((ingredient, index) => {
-                            return (
-                                <li key={index}>{ingredient}</li>
-                            )
-                        })
-                    }
-                </ul>
-                <div>{props.recipe}</div>
-            </div> */}
         </div>
     )
 }

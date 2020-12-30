@@ -6,6 +6,7 @@ import { timeUtil } from '../util/timeUtil';
 import { Button } from '../components/global/Button';
 import { ArrowLeft } from '../images/arrow-left';
 import { ArrowRight } from '../images/arrow-right';
+import { Plan } from '../interfaces/planInterface';
 
 const PLANS = gql`
 query MyQuery {
@@ -24,28 +25,7 @@ query MyQuery {
   }
 `;
 
-interface Ingredient {
-  name: String
-}
-
-interface Dish {
-  name: String,
-  recipe: String,
-  dish_ingredients: Array<Ingredient>
-}
-
-interface Plan {
-  week_number?: number,
-  dish_monday?: Dish,
-  dish_tuesday?: Dish,
-  dish_wednesday?: Dish,
-  dish_thursday?: Dish,
-  dish_friday?: Dish,
-  dish_saturday?: Dish,
-  dish_sunday?: Dish,
-}
-
-export default function Plan({ }) {
+export default function Plans() {
 
   const [dateView, setDateView] = useState(new Date());
 
@@ -104,6 +84,7 @@ export default function Plan({ }) {
         <div className="my-auto"><Button image={<ArrowLeft />} handleClick={goToPreviousWeek} /></div>
         <div className="my-auto"><Button image={<ArrowRight />} handleClick={goToNextWeek} /></div>
       </div>
+
       <div className="flex flex-col md:flex-row">
         <PlanDay day="Monday" dish={weekPlan?.dish_monday} />
         <PlanDay day="Tuesday" dish={weekPlan?.dish_tuesday} />
