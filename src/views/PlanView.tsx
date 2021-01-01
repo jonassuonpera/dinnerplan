@@ -85,7 +85,7 @@ export default function PlanView() {
         <div className="my-auto"><Button image={<ArrowRight />} handleClick={goToNextWeek} /></div>
       </div>
 
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <PlanDay day="Monday" dish={weekPlan?.dish_monday} />
         <PlanDay day="Tuesday" dish={weekPlan?.dish_tuesday} />
         <PlanDay day="Wednesday" dish={weekPlan?.dish_wednesday} />

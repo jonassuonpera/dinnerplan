@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import { Dish } from '../interfaces/planInterface';
 import { useAuth0 } from "../auth/react-auth0-wrapper";
+import { Button } from '../components/global/Button';
 //import { UserContext } from '../util/UserContext';
 
 const DISHES = gql`

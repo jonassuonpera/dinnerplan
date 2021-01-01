@@ -8,7 +8,7 @@ interface Props {
 
 export const Button = (props: Props) => {
     return (
-        <div onClick={() => { props.handleClick() }}>
+        <div className="cursor-pointer" onClick={() => { props.handleClick() }}>
             {props.text ? props.text : props.image}
         </div>
     )

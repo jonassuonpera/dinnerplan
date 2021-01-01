@@ -17,7 +17,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-green-500 mb-3">
         <div className="px-4 flex flex-wrap items-center justify-between w-full">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <div className="w-full relative flex justify-between md:w-auto md:static md:block md:justify-start">
             <a
               className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
               href="/"
@@ -25,7 +25,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
               DinnerPlan
             </a>
             <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block sm:hidden outline-none focus:outline-none"
+              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -43,12 +43,12 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
           </div>
           <div
             className={
-              "lg:flex flex-grow items-center" +
+              "md:flex flex-grow items-center" +
               (navbarOpen ? " flex" : " hidden")
             }
             id="example-navbar-danger"
           >
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <ul className="flex flex-col md:flex-row list-none ml-auto">
               <NavLink className="nav-item my-auto ml-5" exact to="/" activeStyle={{
                 fontWeight: "bold",
                 color: "red"
@@ -62,7 +62,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
                 dishes
               </NavLink>
               <NavLink className="nav-item my-auto ml-5" to="/user-settings">
-                <img width="50" height="50" src={user.picture} alt="user-icon" />
+                <img width="50" height="50" src={user?.picture || UserIcon} alt="user-icon" />
               </NavLink>
               <li className="nav-item my-auto ml-5">
                 {!isAuthenticated && (

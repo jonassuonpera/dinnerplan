@@ -19,6 +19,7 @@ import DishView from './views/DishView';
 import NotFound from './views/NotFound';
 import Header from './Header';
 import { UserContext } from './util/UserContext';
+import { Modal } from './components/global/modal/Modal';
  
 
 
@@ -85,6 +86,7 @@ const App = () => {
     <ApolloProvider client={client}>
       <UserContext.Provider value={user}>
         <Header />
+        <Modal open={true} />
         <div className="px-6 mx-auto flex flex-wrap items-center justify-between">
           <Switch>
             <Route exact path='/' component={PlanView} />
