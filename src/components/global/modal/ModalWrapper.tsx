@@ -1,12 +1,19 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
 import { Button } from '../Button'
+import CreateDishModal from './modals/CreateDishModal';
 
 const modalRoot = document.getElementById( 'modal' );
 
 interface Props {
-    children:ReactElement,
+    handleClose:any,
+    children?:ReactElement,
     title?:String,
+    modalType:String
+}
+
+export const MODAL_TYPE = {
+    CREATE_DISH: 'createDish'
 }
 
 function ModalWrapper(props:Props): ReactElement { 
@@ -20,19 +27,31 @@ function ModalWrapper(props:Props): ReactElement {
         }
     });    
 
+    const onSuccess = () => {
+
+    }
+
+    const getModal = () => {
+        switch (props.modalType) {
+            case MODAL_TYPE.CREATE_DISH:
+                return <CreateDishModal handleSuccess={() => onSuccess}/>
+                
+        }
+    }
+
     const getModalHTML = () => {
         return (
-        <div className="h-screen w-100 aboslute z-1 bg-green-200 right-0">
-            Show this shit
+        <div className="h-screen w-300 z-50 absolute bg-green-200 right-0">
             <div>
-                {/* <Button handleClick={props.handleClose}/> */}
+                <Button text="Close modal" handleClick={props.handleClose}/>
             </div>
-            {/* {props.children} */}
+            {props.title}
+            {getModal()}
         </div>
         )
     }
 
-    return createPortal(getModalHTML()/*<div>testing</div>*/, element);    
+    return createPortal(getModalHTML(), element);    
 
 }
 
