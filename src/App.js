@@ -18,7 +18,7 @@ import PlanView from './views/PlanView';
 import DishView from './views/DishView';
 import NotFound from './views/NotFound';
 import Header from './Header';
-import { UserContext } from './util/UserContext'; 
+import UserContext from './UserContext';
 
 const httpLink = new HttpLink({
   uri: 'https://trusty-donkey-75.hasura.app/v1/graphql',
@@ -30,9 +30,6 @@ const App = () => {
   const [accessToken, setAccessToken] = useState("");
   const [client, setClient] = useState();
   const { getTokenSilently, loading, user } = useAuth0();
-  //const [value, setValue] = useContext(UserContext)
-
-  console.log({user});
 
   useEffect(() => {
     const getAccessToken = async () => {

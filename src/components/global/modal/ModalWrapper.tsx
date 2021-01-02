@@ -28,7 +28,7 @@ function ModalWrapper(props:Props): ReactElement {
     });    
 
     const onSuccess = () => {
-
+        
     }
 
     const getModal = () => {

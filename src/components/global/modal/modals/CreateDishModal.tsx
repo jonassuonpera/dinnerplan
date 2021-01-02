@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from 'react'
 import { gql } from 'apollo-boost';
 import { useMutation } from "@apollo/react-hooks";
+import UserContext from '../../../../UserContext';
 
 interface Props {
     handleSuccess:any
@@ -21,11 +22,15 @@ function CreateDishModal(props: Props): ReactElement {
 
     const [createDish] = useMutation(CREATE_DISH);
 
+    const user = React.useContext(UserContext);    
+
     return (
         <div className="border-gray-500 border-2">
             <form className="formInput" onSubmit={(e) => {
             e.preventDefault();
-            createDish({variables: {createdBy:"auth0|5fea67b9c409730076195c8d", name:dishName, recipe:recipe }});
+            if (user !== null) {
+                createDish({variables: {createdBy:user.sub, name:dishName, recipe:recipe }});
+            }
             }}>
             <input
                 className="input"
@@ -40,7 +45,12 @@ function CreateDishModal(props: Props): ReactElement {
                 type="text"
                 value={recipe}
                 onChange={e => (setRecipe(e.target.value))}
-            />            
+            />       
+            <input 
+                type="submit"
+
+            />
+
             </form>
         </div>
     )

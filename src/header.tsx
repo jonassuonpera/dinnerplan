@@ -11,8 +11,7 @@ interface IAppProps {
 const Header: React.FunctionComponent<IAppProps> = (props) => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [navbarOpen, setNavbarOpen] = React.useState(false);
-  console.log({ user });
-
+  
   return (
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-green-500 mb-3">
