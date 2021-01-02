@@ -5,6 +5,7 @@ interface Props {
 }
 
 function CreateDishModal({}: Props): ReactElement {
+
     return (
         <div className="border-gray-500 border-2">
             This is where dish is created

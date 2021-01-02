@@ -1,24 +1,24 @@
 
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
+import { Button } from '../Button';
 import CreateDishModal from './modals/CreateDishModal';
 
 export const MODAL_TYPE = {
     CREATE_DISH_MODAL:'createDishModal'
 }
 
-// interface ShowModalProps {
-//     MODAL_TYPE:String
-// }
-
-// export const showModal = (props:ShowModalProps) => {
-
-// }
-
 interface Props {
-    modalType:String
+    modalType:String,
+    open:boolean
 }
 
 export const ModalConductor = (props:Props):ReactElement => {
+
+    const [modalOpen, setModalOpen] = useState(true);
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
 
     const getModalHTML = ():ReactElement | undefined => {
         switch (props.modalType) {
@@ -29,7 +29,8 @@ export const ModalConductor = (props:Props):ReactElement => {
 
     return (
         <div>
-            {getModalHTML()}
+            <div><Button text="close" handleClick={closeModal} /></div>
+            <div>{getModalHTML()}</div>
         </div>
     )
 }
