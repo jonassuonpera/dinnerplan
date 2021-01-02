@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from 'react'
 import { gql } from 'apollo-boost';
 import { useMutation } from "@apollo/react-hooks";
 import UserContext from '../../../../UserContext';
+import Input from '../../Input';
 
 interface Props {
     handleSuccess:any
@@ -22,7 +23,12 @@ function CreateDishModal(props: Props): ReactElement {
 
     const [createDish] = useMutation(CREATE_DISH);
 
-    const user = React.useContext(UserContext);    
+    const user = React.useContext(UserContext); 
+    
+    const works = (works:string) => {
+        console.log("works: ",works);
+        
+    }
 
     return (
         <div className="border-gray-500 border-2">
@@ -32,20 +38,21 @@ function CreateDishModal(props: Props): ReactElement {
                 createDish({variables: {createdBy:user.sub, name:dishName, recipe:recipe }});
             }
             }}>
-            <input
-                className="input"
-                placeholder="Dish name"
-                type="text"
-                value={dishName}
-                onChange={e => (setDishName(e.target.value))}
+
+            <Input 
+                placeholder="Dish name" 
+                type="text" 
+                value={dishName} 
+                onChange={(value:string) => setDishName(value)}
             />
-            <input
-                className="input"
+
+            <Input 
                 placeholder="Recipe"
                 type="text"
                 value={recipe}
-                onChange={e => (setRecipe(e.target.value))}
-            />       
+                onChange={(value:string) => setRecipe(value)}
+            />            
+    
             <input 
                 type="submit"
 

@@ -9,7 +9,8 @@ interface Props {
     handleClose:any,
     children?:ReactElement,
     title?:String,
-    modalType:String
+    modalType:String,
+    onSuccess:any
 }
 
 export const MODAL_TYPE = {
@@ -28,13 +29,13 @@ function ModalWrapper(props:Props): ReactElement {
     });    
 
     const onSuccess = () => {
-        
+
     }
 
     const getModal = () => {
         switch (props.modalType) {
             case MODAL_TYPE.CREATE_DISH:
-                return <CreateDishModal handleSuccess={() => onSuccess}/>
+                return <CreateDishModal handleSuccess={() => props.onSuccess}/>
                 
         }
     }

@@ -33,11 +33,15 @@ export default function DishView() {
     if (loading) return "Loading...";
     if (error) return `Error! ${error.message}`;
 
+    const dishCreated = () => {
+
+    } 
+
     return (
         <div className="flex flex-col w-full">
             {
                 showCreateDishModal && (
-                    <ModalWrapper handleClose={() => setShowCreateDishModal(false)} title="Create new dish" modalType="createDish"/>
+                    <ModalWrapper onSuccess={() => dishCreated} handleClose={() => setShowCreateDishModal(false)} title="Create new dish" modalType="createDish"/>
                 )
             }
             <Button text="Create new dish" handleClick={() => setShowCreateDishModal(true)} />
