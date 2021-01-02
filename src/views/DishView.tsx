@@ -9,15 +9,15 @@ import ModalWrapper from '../components/global/modal/ModalWrapper';
 const DISHES = gql`
     query MyQuery {
         dish {
-        name
-        recipe
-        is_public
-        created_by
-        dish_ingredients {
-            ingredient {
             name
+            recipe
+            is_public
+            created_by
+            dish_ingredients {
+                ingredient {
+                name
+                }
             }
-        }
         }
     }
 `;

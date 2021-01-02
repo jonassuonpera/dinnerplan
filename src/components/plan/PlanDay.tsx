@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Dish, IngredientObject } from '../../interfaces/planInterface';
 import { Button } from '../global/Button';
+import ModalWrapper from '../global/modal/ModalWrapper';
+
 interface Props {
     day: String,
     dish: Dish | undefined
@@ -8,9 +10,11 @@ interface Props {
 
 export const PlanDay = (props: Props) => {
 
-    const addDish = () => {
+    const [showAddDishModal, setShowAddDishModal] = useState(false);
 
-    }
+    const dishAdded = () => {
+
+    } 
 
     return (
         <div className="flex-col flex-grow border-2 border-gray-100 m-2 p-2">
@@ -21,10 +25,16 @@ export const PlanDay = (props: Props) => {
                 {
                     !props.dish && (
                         <div className="mx-5">
-                            <Button text="Add dish" handleClick={() => addDish} />
+                            <Button text="Add dish" handleClick={() => setShowAddDishModal(true)} />
                         </div>
                     )
+                    
                 }
+                            {
+                showAddDishModal && (
+                    <ModalWrapper onSuccess={() => dishAdded} handleClose={() => setShowAddDishModal(false)} title="Add dish" modalType="addDish"/>
+                )
+            }
             </div>
             <div>{props.dish?.name}</div>
             <div>{props.dish?.recipe}</div>

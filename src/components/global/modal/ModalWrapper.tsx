@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
 import { Button } from '../Button'
+import AddDishModal from './modals/AddDishModal';
 import CreateDishModal from './modals/CreateDishModal';
 
 const modalRoot = document.getElementById( 'modal' );
@@ -14,7 +15,8 @@ interface Props {
 }
 
 export const MODAL_TYPE = {
-    CREATE_DISH: 'createDish'
+    CREATE_DISH: 'createDish',
+    ADD_DISH: 'addDish'
 }
 
 function ModalWrapper(props:Props): ReactElement { 
@@ -36,7 +38,10 @@ function ModalWrapper(props:Props): ReactElement {
         switch (props.modalType) {
             case MODAL_TYPE.CREATE_DISH:
                 return <CreateDishModal handleSuccess={() => props.onSuccess}/>
-                
+
+            case MODAL_TYPE.ADD_DISH:
+                return <AddDishModal handleSuccess={() => props.onSuccess} />
+                        
         }
     }
 

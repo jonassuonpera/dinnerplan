@@ -24,11 +24,6 @@ function CreateDishModal(props: Props): ReactElement {
     const [createDish] = useMutation(CREATE_DISH);
 
     const user = React.useContext(UserContext); 
-    
-    const works = (works:string) => {
-        console.log("works: ",works);
-        
-    }
 
     return (
         <div className="border-gray-500 border-2">
