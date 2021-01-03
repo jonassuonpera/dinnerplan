@@ -9,9 +9,10 @@ const modalRoot = document.getElementById( 'modal' );
 interface Props {
     handleClose:any,
     children?:ReactElement,
-    title?:String,
-    modalType:String,
-    onSuccess:any
+    title?:string,
+    modalType:string,
+    onSuccess:any,
+    data?:any
 }
 
 export const MODAL_TYPE = {
@@ -40,7 +41,7 @@ function ModalWrapper(props:Props): ReactElement {
                 return <CreateDishModal handleSuccess={() => props.onSuccess}/>
 
             case MODAL_TYPE.ADD_DISH:
-                return <AddDishModal handleSuccess={() => props.onSuccess} />
+                return <AddDishModal handleSuccess={() => props.onSuccess} data={props.data}/>
                         
         }
     }

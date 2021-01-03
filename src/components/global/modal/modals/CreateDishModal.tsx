@@ -1,8 +1,10 @@
 import React, { ReactElement, useState } from 'react'
 import { gql } from 'apollo-boost';
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import UserContext from '../../../../UserContext';
 import Input from '../../Input';
+import SearchSuggester from '../../SearchSuggester';
+import { Ingredient } from '../../../../interfaces/planInterface';
 
 interface Props {
     handleSuccess:any
@@ -16,18 +18,45 @@ mutation ($createdBy:String!, $name:String!, $recipe:String!) {
   }
 `;
 
+
+const INGREDIENT_SEARCH = gql`
+query ($name:String!) {
+    ingredient(where: {name: {_ilike: $name}}) {
+      id
+      name
+    }
+  }
+`;
+
+
+
 function CreateDishModal(props: Props): ReactElement {
 
     const [dishName, setDishName] = useState<string>("");
     const [recipe, setRecipe] = useState<string>("");
 
+    const [ingredients, setIngredients] = useState<Array<string>>([]);
+
     const [createDish] = useMutation(CREATE_DISH);
+
+    const { loading, error, data } = useQuery(INGREDIENT_SEARCH, {
+        variables: { name: 's%' },
+    });
 
     const user = React.useContext(UserContext); 
 
+    const searchIngredient = (text:string) => {
+        setIngredients(ingredients => [...ingredients, text]);
+    }
+    
+    let ingredientNames:Array<string> = [];
+    if (data && !loading) {
+        ingredientNames = data.ingredient.map((ingredient:Ingredient) => ingredient.name)        
+    }
+
     return (
         <div className="border-gray-500 border-2">
-            <form className="formInput" onSubmit={(e) => {
+            <form className="formInput flex flex-col" onSubmit={(e) => {
             e.preventDefault();
             if (user !== null) {
                 createDish({variables: {createdBy:user.sub, name:dishName, recipe:recipe }});
@@ -46,7 +75,26 @@ function CreateDishModal(props: Props): ReactElement {
                 type="text"
                 value={recipe}
                 onChange={(value:string) => setRecipe(value)}
-            />            
+            />  
+
+            {
+                <ul>
+                {
+                    ingredients.map((ingredient:string, index:number) => {
+                        return (
+                            <li key={index}>{ingredient}</li>
+                        )
+                    })  
+                }                  
+                </ul>
+            }    
+
+
+            {/* <SearchSuggester 
+                placeholder="Add ingredient" 
+                items={ingredientNames}
+                handleSelection={() => searchIngredient}
+            />       */}
     
             <input 
                 type="submit"

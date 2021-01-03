@@ -11,6 +11,7 @@ import { Plan } from '../interfaces/planInterface';
 const PLANS = gql`
 query MyQuery {
   plan {
+    id
     week_number
     dish_monday {
       name
@@ -21,6 +22,69 @@ query MyQuery {
         }
       }
     }
+    dish_monday {
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    }
+    dish_tuesday {
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    }
+    dish_wednesday {
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    }
+    dish_thursday {
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    }
+    dish_friday{
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    }
+    dish_saturday {
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    } 
+    dish_sunday {
+      name
+      recipe
+      dish_ingredients {
+        ingredient {
+          name
+        }
+      }
+    }                  
   }
   }
 `;
@@ -31,12 +95,12 @@ export default function PlanView() {
 
   const [weekNumber, setWeekNumber] = useState(timeUtil(dateView));
 
-  const [weekPlan, setWeekPlan] = useState<Plan>();
+  const [weekPlan, setWeekPlan] = useState<Plan | null>();
 
   const { loading, error, data } = useQuery(PLANS);
 
   const updateWeekPlan = (newWeek: number) => {
-    setWeekPlan({});
+    setWeekPlan(null);
     if (data) {
       data.plan.filter((obj: Plan) => {
         if (obj.week_number === newWeek) {
@@ -86,13 +150,13 @@ export default function PlanView() {
       </div>
 
       <div className="flex flex-col lg:flex-row">
-        <PlanDay day="Monday" dish={weekPlan?.dish_monday} />
-        <PlanDay day="Tuesday" dish={weekPlan?.dish_tuesday} />
-        <PlanDay day="Wednesday" dish={weekPlan?.dish_wednesday} />
-        <PlanDay day="Thursday" dish={weekPlan?.dish_thursday} />
-        <PlanDay day="Friday" dish={weekPlan?.dish_friday} />
-        <PlanDay day="Saturday" dish={weekPlan?.dish_saturday} />
-        <PlanDay day="Sunday" dish={weekPlan?.dish_sunday} />
+        <PlanDay planId={weekPlan?.id} day="Monday" dish={weekPlan?.dish_monday}  />
+        <PlanDay planId={weekPlan?.id} day="Tuesday" dish={weekPlan?.dish_tuesday} />
+        <PlanDay planId={weekPlan?.id} day="Wednesday" dish={weekPlan?.dish_wednesday} />
+        <PlanDay planId={weekPlan?.id} day="Thursday" dish={weekPlan?.dish_thursday} />
+        <PlanDay planId={weekPlan?.id} day="Friday" dish={weekPlan?.dish_friday} />
+        <PlanDay planId={weekPlan?.id} day="Saturday" dish={weekPlan?.dish_saturday} />
+        <PlanDay planId={weekPlan?.id} day="Sunday" dish={weekPlan?.dish_sunday} />
       </div>
     </div>
   )

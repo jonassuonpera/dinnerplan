@@ -1,5 +1,5 @@
 export interface Ingredient {
-    name: String
+    name: string
 }
 
 export interface IngredientObject {
@@ -7,14 +7,16 @@ export interface IngredientObject {
 }
 
 export interface Dish {
-    name: String,
-    recipe: String,
+    id:number,
+    name: string,
+    recipe: string,
     is_public: Boolean,
-    created_by: String,
+    created_by: string,
     dish_ingredients: Array<IngredientObject>
 }
 
 export interface Plan {
+    id:number,
     week_number?: number,
     dish_monday?: Dish,
     dish_tuesday?: Dish,

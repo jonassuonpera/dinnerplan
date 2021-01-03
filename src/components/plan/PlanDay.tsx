@@ -4,7 +4,8 @@ import { Button } from '../global/Button';
 import ModalWrapper from '../global/modal/ModalWrapper';
 
 interface Props {
-    day: String,
+    day: string,
+    planId:number | undefined,
     dish: Dish | undefined
 }
 
@@ -32,7 +33,7 @@ export const PlanDay = (props: Props) => {
                 }
                             {
                 showAddDishModal && (
-                    <ModalWrapper onSuccess={() => dishAdded} handleClose={() => setShowAddDishModal(false)} title="Add dish" modalType="addDish"/>
+                    <ModalWrapper onSuccess={() => dishAdded} handleClose={() => setShowAddDishModal(false)} title="Add dish" modalType="addDish" data={props}/>
                 )
             }
             </div>
