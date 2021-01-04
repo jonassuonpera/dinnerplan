@@ -35,20 +35,31 @@ function CreateDishModal(props: Props): ReactElement {
     const [dishName, setDishName] = useState<string>("");
     const [recipe, setRecipe] = useState<string>("");
 
+    const [ingredientSearchText, setIngredientSearchText] = useState<string | null>(null);
+
     const [ingredients, setIngredients] = useState<Array<string>>([]);
 
     const [createDish] = useMutation(CREATE_DISH);
 
     const { loading, error, data } = useQuery(INGREDIENT_SEARCH, {
-        variables: { name: 's%' },
+        variables: { name: `${ingredientSearchText}%` },
     });
 
     const user = React.useContext(UserContext); 
 
-    const searchIngredient = (text:string) => {
+    const searchIngredient = (text:string) => {        
         setIngredients(ingredients => [...ingredients, text]);
     }
     
+    const seachInputUpdate = (text:string) => {
+        if (text.length > 2) {
+            setIngredientSearchText(text);
+        }
+        if (ingredientSearchText?.length === 3 && text.length === 2) {
+            setIngredientSearchText(null);
+        }
+    }
+
     let ingredientNames:Array<string> = [];
     if (data && !loading) {
         ingredientNames = data.ingredient.map((ingredient:Ingredient) => ingredient.name)        
@@ -93,7 +104,8 @@ function CreateDishModal(props: Props): ReactElement {
             {/* <SearchSuggester 
                 placeholder="Add ingredient" 
                 items={ingredientNames}
-                handleSelection={() => searchIngredient}
+                handleSelection={(text:string) => searchIngredient(text)}
+                emitInputToParent={(text:string) => seachInputUpdate(text)}
             />       */}
     
             <input 

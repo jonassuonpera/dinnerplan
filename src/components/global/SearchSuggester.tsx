@@ -5,7 +5,8 @@ import { Button } from './Button';
 interface Props {
     placeholder:string,
     items:Array<string>,
-    handleSelection:any
+    handleSelection:any,
+    emitInputToParent:any
 }
 
 const SearchSuggester = (props: Props) => {
@@ -13,7 +14,13 @@ const SearchSuggester = (props: Props) => {
     const [searchText, setSearchText] = useState<string>('');
 
     const handleSelection = (text:string) => {
-        setSearchText('');
+        setSearchText('');        
+        props.handleSelection(text);
+    }
+
+    const emitInputToParent = (text:string) => {
+        setSearchText(text);
+        props.emitInputToParent(text);
     }
 
     return (
@@ -22,7 +29,7 @@ const SearchSuggester = (props: Props) => {
                 placeholder={props.placeholder} 
                 type="text" 
                 value={searchText} 
-                onChange={(value:string) => setSearchText(value)} 
+                onChange={(value:string) => emitInputToParent(value)} 
             />
             {
                 props.items.map((item:any, index:number) => {
