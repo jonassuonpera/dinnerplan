@@ -41,19 +41,11 @@ export const PlanDay = (props: Props) => {
 
             <div className="w-full flex flex-row 2xl:flex-col">
                 {
-                    props.dish?.recipe ? (
-                        <div className="flex flex-col flex-grow">
-                            <div>Recipe:</div>
-                            <div>{props.dish?.recipe}</div>
-                        </div>                        
-                    ) : null
-                }
-                {
                     props.dish?.dish_ingredients && props.dish.dish_ingredients.length > 0 ? (
                         <div className="flex flex-col flex-grow">
                             <div>Ingredients</div>
                             <div>
-                                <ul>
+                                <ul className="list-disc list-inside">
                                     {
                                         props.dish?.dish_ingredients?.map((item: IngredientObject, index) => {
                                             return (
@@ -63,6 +55,14 @@ export const PlanDay = (props: Props) => {
                                     }
                                 </ul>
                             </div>                    
+                        </div>                        
+                    ) : null
+                }                
+                {
+                    props.dish?.recipe ? (
+                        <div className="flex flex-col flex-grow">
+                            <div>Recipe:</div>
+                            <div>{props.dish?.recipe}</div>
                         </div>                        
                     ) : null
                 }
