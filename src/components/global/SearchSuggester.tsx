@@ -5,7 +5,7 @@ import { Button } from './Button';
 interface Props {
     placeholder:string,
     items:Array<string>,
-    handleSelection:any,
+    handleSuggestionSelection:any,
     emitInputToParent:any
 }
 
@@ -15,7 +15,8 @@ const SearchSuggester = (props: Props) => {
 
     const handleSelection = (text:string) => {
         setSearchText('');        
-        props.handleSelection(text);
+        props.handleSuggestionSelection(text);
+        props.emitInputToParent('');
     }
 
     const emitInputToParent = (text:string) => {

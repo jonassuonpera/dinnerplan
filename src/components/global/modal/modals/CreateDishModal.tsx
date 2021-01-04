@@ -47,11 +47,14 @@ function CreateDishModal(props: Props): ReactElement {
 
     const user = React.useContext(UserContext); 
 
-    const searchIngredient = (text:string) => {        
+    const onSuggestionSelection = (text:string) => {        
         setIngredients(ingredients => [...ingredients, text]);
     }
     
     const seachInputUpdate = (text:string) => {
+        if (text.length === 0) {
+            setIngredientSearchText(null);
+        }
         if (text.length > 2) {
             setIngredientSearchText(text);
         }
@@ -100,13 +103,12 @@ function CreateDishModal(props: Props): ReactElement {
                 </ul>
             }    
 
-
-            {/* <SearchSuggester 
+            <SearchSuggester 
                 placeholder="Add ingredient" 
                 items={ingredientNames}
-                handleSelection={(text:string) => searchIngredient(text)}
+                handleSuggestionSelection={(text:string) => onSuggestionSelection(text)}
                 emitInputToParent={(text:string) => seachInputUpdate(text)}
-            />       */}
+            />      
     
             <input 
                 type="submit"
