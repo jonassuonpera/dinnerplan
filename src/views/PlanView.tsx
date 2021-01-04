@@ -143,7 +143,7 @@ export default function PlanView() {
 
   return (
     <div className="flex-col w-full">
-      <div className="flex flex-row m-2">
+      <div className="flex flex-row m-2 sticky top-0 py-6 bg-white">
         <div className="my-auto"><Button classes="cursor-pointer bg-green-500 rounded mr-2 px-2" image={<ArrowLeft />} handleClick={goToPreviousWeek} /></div>
         <div className="my-auto"><Button classes="cursor-pointer bg-green-500 rounded px-2" image={<ArrowRight />} handleClick={goToNextWeek} /></div>
         <div className="mx-2">Week number: {weekNumber} </div>        

@@ -48,7 +48,7 @@ function ModalWrapper(props:Props): ReactElement {
 
     const getModalHTML = () => {
         return (
-        <div className="h-screen w-300 z-50 absolute bg-green-200 right-0">
+        <div className="h-screen w-300 z-50 fixed bg-green-200 right-0">
             <div>
                 <Button text="Close modal" handleClick={props.handleClose}/>
             </div>

@@ -58,7 +58,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
                 fontWeight: "bold",
                 color: "white"
               }}>
-                dishes
+                Dishes
               </NavLink>
               <NavLink className="nav-item my-auto ml-5" to="/user-settings">
                 <img width="50" height="50" src={user?.picture || UserIcon} alt="user-icon" />

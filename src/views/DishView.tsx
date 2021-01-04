@@ -44,10 +44,12 @@ export default function DishView() {
                     <ModalWrapper onSuccess={() => dishCreated} handleClose={() => setShowCreateDishModal(false)} title="Create new dish" modalType="createDish"/>
                 )
             }
-            <Button text="Create new dish" handleClick={() => setShowCreateDishModal(true)} />
-            <div className="flex flex-row w-full">
+            <div>
+            <Button classes="p-1 font-bold rounded bg-green-500 border-green-500 border-2 hover:bg-transparent" text="Create new dish" handleClick={() => setShowCreateDishModal(true)} />                  
+            </div>
+            <div className="flex flex-col sm:flex-row w-full">
                 <div className="flex flex-col flex-grow">
-                    <div>My dishes</div>
+                    <div className="text-2xl mt-5">My dishes</div>
                     <div>
                         {
                             data.dish.map((dishItem: Dish, index: number) => {
@@ -63,7 +65,7 @@ export default function DishView() {
                     </div>
                 </div>
                 <div className="flex flex-col flex-grow">
-                    <div>Inspiration</div>
+                    <div className="text-2xl mt-5">Inspiration</div>
                     <div>
                         {
                             data.dish.map((dishItem: Dish, index: number) => {
