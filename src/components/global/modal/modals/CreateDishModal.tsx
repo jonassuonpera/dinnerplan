@@ -5,6 +5,7 @@ import UserContext from '../../../../UserContext';
 import Input from '../../Input';
 import SearchSuggester from '../../SearchSuggester';
 import { Ingredient } from '../../../../interfaces/planInterface';
+import { Button } from '../../Button';
 
 interface Props {
     handleSuccess:any
@@ -38,6 +39,7 @@ function CreateDishModal(props: Props): ReactElement {
     const [ingredientSearchText, setIngredientSearchText] = useState<string | null>(null);
 
     const [ingredients, setIngredients] = useState<Array<string>>([]);
+    const [newIngredients, setNewIngredients] = useState<Array<string>>([]);
 
     const [createDish] = useMutation(CREATE_DISH);
 
@@ -49,6 +51,12 @@ function CreateDishModal(props: Props): ReactElement {
 
     const onSuggestionSelection = (text:string) => {        
         setIngredients(ingredients => [...ingredients, text]);
+    }
+
+    const onAddInput = (text:string) => {
+        console.log({text});
+        
+        setNewIngredients(newIngredients => [...newIngredients, text]);
     }
     
     const seachInputUpdate = (text:string) => {
@@ -63,6 +71,17 @@ function CreateDishModal(props: Props): ReactElement {
         }
     }
 
+    const getOrCreateIngredient = ():Array<number> => {
+
+
+
+        return [1,2]
+    }
+
+    const handleCreateDish = () => {
+        console.log({ingredients});
+    }
+
     let ingredientNames:Array<string> = [];
     if (data && !loading) {
         ingredientNames = data.ingredient.map((ingredient:Ingredient) => ingredient.name)        
@@ -72,9 +91,6 @@ function CreateDishModal(props: Props): ReactElement {
         <div className="border-gray-500 border-2">
             <form className="formInput flex flex-col" onSubmit={(e) => {
             e.preventDefault();
-            if (user !== null) {
-                createDish({variables: {createdBy:user.sub, name:dishName, recipe:recipe }});
-            }
             }}>
 
             <Input 
@@ -107,13 +123,11 @@ function CreateDishModal(props: Props): ReactElement {
                 placeholder="Add ingredient" 
                 items={ingredientNames}
                 handleSuggestionSelection={(text:string) => onSuggestionSelection(text)}
-                emitInputToParent={(text:string) => seachInputUpdate(text)}
+                handleAddInput={(text:string) => onAddInput(text)}
+                updateInputToParent={(text:string) => seachInputUpdate(text)}
             />      
-    
-            <input 
-                type="submit"
 
-            />
+            <Button text="Create dish" handleClick={() => handleCreateDish()} />
 
             </form>
         </div>

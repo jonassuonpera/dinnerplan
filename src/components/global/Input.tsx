@@ -4,7 +4,8 @@ interface Props {
     placeholder:string,
     type:string,
     value:string,
-    onChange:any
+    onChange:any,
+    onKeyUp?:any
 }
 
 function Input(props: Props): ReactElement {
@@ -16,6 +17,7 @@ function Input(props: Props): ReactElement {
                 type={props.type}
                 value={props.value}
                 onChange={e => props.onChange(e.target.value)}
+                onKeyUp={e => props.onKeyUp ? props.onKeyUp(e) : null}
             />
         </>
     )

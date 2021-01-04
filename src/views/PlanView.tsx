@@ -143,13 +143,13 @@ export default function PlanView() {
 
   return (
     <div className="flex-col w-full">
-      <div className="flex flex-row">
-        <div className="mx-2">Week number: {weekNumber} </div>
-        <div className="my-auto"><Button image={<ArrowLeft />} handleClick={goToPreviousWeek} /></div>
-        <div className="my-auto"><Button image={<ArrowRight />} handleClick={goToNextWeek} /></div>
+      <div className="flex flex-row m-2">
+        <div className="my-auto"><Button classes="cursor-pointer bg-green-500 rounded mr-2 px-2" image={<ArrowLeft />} handleClick={goToPreviousWeek} /></div>
+        <div className="my-auto"><Button classes="cursor-pointer bg-green-500 rounded px-2" image={<ArrowRight />} handleClick={goToNextWeek} /></div>
+        <div className="mx-2">Week number: {weekNumber} </div>        
       </div>
 
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col 2xl:flex-row">
         <PlanDay planId={weekPlan?.id} day="Monday" dish={weekPlan?.dish_monday}  />
         <PlanDay planId={weekPlan?.id} day="Tuesday" dish={weekPlan?.dish_tuesday} />
         <PlanDay planId={weekPlan?.id} day="Wednesday" dish={weekPlan?.dish_wednesday} />

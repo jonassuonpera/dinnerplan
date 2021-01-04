@@ -6,7 +6,8 @@ interface Props {
     placeholder:string,
     items:Array<string>,
     handleSuggestionSelection:any,
-    emitInputToParent:any
+    updateInputToParent:any,
+    handleAddInput:any
 }
 
 const SearchSuggester = (props: Props) => {
@@ -16,12 +17,12 @@ const SearchSuggester = (props: Props) => {
     const handleSelection = (text:string) => {
         setSearchText('');        
         props.handleSuggestionSelection(text);
-        props.emitInputToParent('');
+        props.updateInputToParent('');
     }
 
-    const emitInputToParent = (text:string) => {
+    const updateInputToParent = (text:string) => {
         setSearchText(text);
-        props.emitInputToParent(text);
+        props.updateInputToParent(text);
     }
 
     return (
@@ -30,7 +31,12 @@ const SearchSuggester = (props: Props) => {
                 placeholder={props.placeholder} 
                 type="text" 
                 value={searchText} 
-                onChange={(value:string) => emitInputToParent(value)} 
+                onChange={(value:string) => updateInputToParent(value)} 
+                onKeyUp={(e:any) => {
+                    if (e.keyCode === 13) {
+                        props.handleAddInput(searchText)
+                    }
+                }}
             />
             {
                 props.items.map((item:any, index:number) => {

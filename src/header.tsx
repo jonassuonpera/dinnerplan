@@ -48,15 +48,15 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col md:flex-row list-none ml-auto">
-              <NavLink className="nav-item my-auto ml-5" exact to="/" activeStyle={{
+              <NavLink className="nav-item my-auto ml-5 hover:text-white" exact to="/" activeStyle={{
                 fontWeight: "bold",
-                color: "red"
+                color: "white"
               }}>
                 Plan
               </NavLink>
-              <NavLink className="nav-item my-auto ml-5" to="/dishes" activeStyle={{
+              <NavLink className="nav-item my-auto ml-5 hover:text-white" to="/dishes" activeStyle={{
                 fontWeight: "bold",
-                color: "red"
+                color: "white"
               }}>
                 dishes
               </NavLink>
@@ -71,7 +71,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
                 )}
                 {isAuthenticated && (
                   <>
-                    <button onClick={() => logout({})}>
+                    <button className="hover:text-white" onClick={() => logout({})}>
                       Log out
               </button>
                   </>
